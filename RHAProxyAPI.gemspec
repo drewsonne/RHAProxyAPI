@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'HAProxyAPI/version'
+require 'RHAProxyAPI/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "HAProxyAPI"
+  spec.name          = "RHAProxyAPI"
   spec.version       = HAProxyAPI::VERSION
   spec.authors       = ["Drew J. Sonne"]
   spec.email         = ["drew.sonne@gmail.com"]
