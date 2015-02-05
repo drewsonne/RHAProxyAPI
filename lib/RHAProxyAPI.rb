@@ -75,7 +75,56 @@ module HAProxyAPI
   end
 
   class Executor
+
+    SOCKET = 'socket'
+    HTTP = 'http'
+
+    @connection_string = ''
+    @method
+    @http_auth
+    @socket
+
+    def initialize(connection_string, method)
+      @connection_string = connection_string
+      @method = method
+    end
+
+    def set_credentials(username, password)
+      @http_auth = "#{username}:#{password}"
+    end
+
     def execute(command)
+      case @method
+        when self::SOCKET; then command.processSocketResponse(executeSocket(command))
+        when self::HTTP; then command.processHttpResponse(executeHttp(command))
+        else raise UnknownMethod, @method
+      end
+    end
+
+    def execute_socket(command)
+      open_socket { |socket|
+        socket.print "#{command.get_socket_command}\n"
+        socket.close_write
+        puts socket.read
+      }
+    end
+
+    def open_socket(&response_processing)
+
+      if @connection_string.include? ':'
+        hostname, port = @connection_string.split(':')
+        Socket.tcp(hostname, port) &response_processing
+
+      elsif File.new(@connection_string).socket?
+        Socket.unix(@connection_string) &response_processing
+
+      else
+        raise BadConnectionString, @connection_string
+      end
+
+    end
+
+    def executeHttp(command)
 
     end
   end

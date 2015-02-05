@@ -1,6 +1,12 @@
 module RHAProxyAPI
   module Exception
 
+    class BadConnectionString < ArgumentError
+      def initialize(connection_string)
+        super("Bad connection string: '#{connection_string}'")
+      end
+    end
+
     class UnknownMethod < ArgumentError
       def initialize(method_name)
         super("Unexpected connection method: '#{method_name}'.")
