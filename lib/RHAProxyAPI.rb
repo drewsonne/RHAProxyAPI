@@ -1,11 +1,10 @@
-require "HAProxyAPI/version"
+require "RHAProxyAPI/version"
 
 
-require 'HAProxyAPI/Stats/line_collection'
-require 'HAProxyAPI/Stats/service_obj'
-require 'HAProxyAPI/Exceptions/missing_backend'
-require 'HAProxyAPI/Exceptions/missing_server'
-require 'HAProxyAPI/Command/stats'
+require 'RHAProxyAPI/Stats/line_collection'
+require 'RHAProxyAPI/Stats/service_obj'
+require 'RHAProxyAPI/exception'
+require 'RHAProxyAPI/Command/stats'
 
 module HAProxyAPI
 
@@ -29,7 +28,7 @@ module HAProxyAPI
       @proxy_tree = []
 
       stats.each { |stats_line|
-        service = HAProxyAPI::Stats::ServiceObj.new(stats_line)
+        service = RHAProxyAPI::Stats::ServiceObj.new(stats_line)
         if @proxy_tree.include?(service.info.proxy_name)
           @proxy_tree[service.info.proxy_name][service.info.service_name] = service
         else
