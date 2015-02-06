@@ -81,7 +81,8 @@ module HAProxyAPI
 
     @connection_string = ''
     @method
-    @http_auth
+    @http_auth_username
+    @http_auth_password
     @socket
 
     def initialize(connection_string, method)
@@ -90,7 +91,8 @@ module HAProxyAPI
     end
 
     def set_credentials(username, password)
-      @http_auth = "#{username}:#{password}"
+      @http_auth_username = username
+      @http_auth_password = password
     end
 
     def execute(command)
@@ -105,7 +107,7 @@ module HAProxyAPI
       open_socket { |socket|
         socket.print "#{command.get_socket_command}\n"
         socket.close_write
-        puts socket.read
+        socket.read
       }
     end
 
@@ -125,6 +127,23 @@ module HAProxyAPI
     end
 
     def executeHttp(command)
+
+      domain, port = @connection_string.match(/http\:\/\/([^\:]+):([^\/]+)/)
+
+      data_model = command.get_http_command
+      url = URI(@connection_string)
+      if data_model.method == 'get'
+        url.query = URI.encode_www_form(data_model.data)
+        request = Net::HTTP::Get.new(url)
+      elsif data_model.method == 'post'
+        request = Net::HTTP::Post.new(uri)
+      end
+      request.basic_auth(@http_auth_username, @http_auth_password)
+
+      response = Net::HTTP.start(domain, port) { |http|
+        http.request(request)
+      }
+      response.body
 
     end
   end

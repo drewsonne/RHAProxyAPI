@@ -1,6 +1,12 @@
 module RHAProxyAPI
   module Exception
 
+    class BadHTTPResponse < IOError
+      def initialize(code)
+        super("Bad HTTP Response: HTTP '#{code}'")
+      end
+    end
+
     class BadConnectionString < ArgumentError
       def initialize(connection_string)
         super("Bad connection string: '#{connection_string}'")
