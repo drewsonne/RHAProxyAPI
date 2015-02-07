@@ -1,6 +1,2 @@
-module RHAProxyAPI
-  module Stats
-    class LineCollection
-    end
-  end
+class LineCollection
 end
