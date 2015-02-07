@@ -27,7 +27,7 @@ class Stats
     @proxy_tree = []
 
     stats.each { |stats_line|
-      service = RHAProxyAPI::Stats::ServiceObj.new(stats_line)
+      service = ServiceObj.create_from_line(stats_line)
       if @proxy_tree.include?(service.info.proxy_name)
         @proxy_tree[service.info.proxy_name][service.info.service_name] = service
       else
@@ -101,8 +101,7 @@ class Executor
   def dispatch_to_ha(ha_command)
     case @method
       when Executor::SOCKET
-        executed_response = execute_socket(ha_command)
-        ha_command.processSocketResponse(executed_response)
+        ha_command.process_socket_response(execute_socket(ha_command))
       when Executor::HTTP
         ha_command.processHttpResponse(executeHttp(ha_command))
         else
@@ -122,10 +121,10 @@ class Executor
 
     if @connection_string.include? ':'
       hostname, port = @connection_string.split(':')
-      Socket.tcp(hostname, port.to_i) &yield
+      yield Socket.tcp(hostname, port.to_i)
 
     elsif File.new(@connection_string).socket?
-      Socket.unix(@connection_string) &yield
+      yield Socket.unix(@connection_string)
 
     else
       raise BadConnectionString, @connection_string
