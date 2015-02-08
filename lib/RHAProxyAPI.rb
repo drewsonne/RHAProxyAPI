@@ -122,10 +122,8 @@ class Executor
     if @connection_string.include? ':'
       hostname, port = @connection_string.split(':')
       yield Socket.tcp(hostname, port.to_i)
-
     elsif File.new(@connection_string).socket?
       yield Socket.unix(@connection_string)
-
     else
       raise BadConnectionString, @connection_string
     end

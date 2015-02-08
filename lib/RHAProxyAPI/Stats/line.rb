@@ -14,4 +14,8 @@ class Line
 
   end
 
+  def get(variable_name)
+    @data[variable_name]
+  end
+
 end

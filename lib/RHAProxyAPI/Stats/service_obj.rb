@@ -1,3 +1,5 @@
+require './lib/RHAProxyAPI/Stats/info.rb'
+
 class ServiceObj
   attr_accessor :info
   attr_accessor :info
@@ -17,8 +19,6 @@ class ServiceObj
     instance.set_from_line(line)
   end
 
-  private
-
   def set_from_line(line)
     @info = Info.new(line)
     @health = Health.new(line)
@@ -32,4 +32,5 @@ class ServiceObj
     @warning = Warning.new(line)
     @http_response_code = HttpResponseCode.new(line)
   end
+
 end
