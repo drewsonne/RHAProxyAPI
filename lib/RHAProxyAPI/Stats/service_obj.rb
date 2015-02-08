@@ -1,4 +1,14 @@
 require './lib/RHAProxyAPI/Stats/info.rb'
+require './lib/RHAProxyAPI/Stats/health.rb'
+require './lib/RHAProxyAPI/Stats/rah_queue.rb'
+require './lib/RHAProxyAPI/Stats/session.rb'
+require './lib/RHAProxyAPI/Stats/bytes.rb'
+require './lib/RHAProxyAPI/Stats/rate.rb'
+require './lib/RHAProxyAPI/Stats/abort.rb'
+require './lib/RHAProxyAPI/Stats/denied.rb'
+require './lib/RHAProxyAPI/Stats/error.rb'
+require './lib/RHAProxyAPI/Stats/warning.rb'
+require './lib/RHAProxyAPI/Stats/http_response_code.rb'
 
 class ServiceObj
   attr_accessor :info
@@ -31,6 +41,7 @@ class ServiceObj
     @error = Error.new(line)
     @warning = Warning.new(line)
     @http_response_code = HttpResponseCode.new(line)
+    self
   end
 
 end

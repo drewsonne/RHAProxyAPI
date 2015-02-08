@@ -24,7 +24,7 @@ class Stats
       raise "Unexpected stats type."
     end
 
-    @proxy_tree = []
+    @proxy_tree = {}
 
     stats.each { |stats_line|
       service = ServiceObj.create_from_line(stats_line)

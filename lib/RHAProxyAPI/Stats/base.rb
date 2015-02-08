@@ -11,6 +11,7 @@ class Base
 
   def assign_values
     @attr_map.each {|raw_name, property|
+      self.class.send(:attr_accessor, property)
       instance_variable_set("@#{property}", @line.get(raw_name))
     }
   end
