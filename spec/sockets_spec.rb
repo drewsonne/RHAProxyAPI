@@ -1,7 +1,6 @@
 require 'rspec'
 require 'RHAProxyAPI/executor'
 require 'spec_helper'
-require 'RHAProxyAPI/Test/Mock/mock_tcp_socket'
 require 'rspec/mocks'
 
 describe 'Socket dispatch' do
@@ -18,11 +17,13 @@ describe 'Socket dispatch' do
 
   it 'should pass parameters to UNIXSocket' do
 
+    class MockUnixSocketFile
+      def socket?; true end
+    end
+
     # We don't need to create files
     allow(File).to receive(:new) {
-      class MockUnixSocketFile
-        def socket?; true end
-      end.new
+      MockUnixSocketFile.new
     }
     allow(Socket).to receive(:unix) { |path|
       expect(path).to eq("/hallo_world")
