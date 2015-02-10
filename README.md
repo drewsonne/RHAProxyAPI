@@ -33,7 +33,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ### Docker Testing
 Included is a docker image with HAProxy listening on port 8080.
 You can get this running with:
-```docker run -d -p 8080:8080 -p 80:80 -v /Users/work/RubymineProjects/RHAProxyAPI/haproxy-override:/haproxy-override test/rhaproxyapi```
+```docker build -t drewsonne/rhaproxy-api .```
+```docker run -d -p 8080:8080 -p 80:80 -v $(pwd)/haproxy-override:/haproxy-override drewsonne/rhaproxy-api```
 
 ## Contributing
 
