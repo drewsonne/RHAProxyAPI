@@ -1,6 +1,6 @@
-# HAProxyAPI
+# RHAProxyAPI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/HAProxyAPI`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/RHAProxyAPI`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
 
@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'HAProxyAPI'
+gem 'RHAProxyAPI'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install HAProxyAPI
+    $ gem install RHAProxyAPI
 
 ## Usage
 
@@ -37,7 +37,7 @@ You can get this running with:
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/HAProxyAPI/fork )
+1. Fork it ( https://github.com/[my-github-username]/RHAProxyAPI/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
