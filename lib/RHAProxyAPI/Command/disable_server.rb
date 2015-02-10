@@ -1,12 +1,12 @@
-require './lib/RHAProxyAPI/Command/base_obj.rb'
+require 'RHAProxyAPI/Command/enable_server'
 
-module Command
-
-  class DisableServer < Command::BaseObj
-    def initialize(server, backend)
-      super(server, backend)
-      @action = 'disable'
+module RHAProxyAPI
+  module Command
+    class DisableServer < RHAProxyAPI::Command::EnableServer
+      def initialize(server, backend)
+        super(server, backend)
+        @action = 'disable'
+      end
     end
   end
-
 end

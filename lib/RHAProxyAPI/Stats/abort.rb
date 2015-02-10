@@ -1,11 +1,15 @@
-require './lib/RHAProxyAPI/Stats/base.rb'
+require 'RHAProxyAPI/stats'
 
-class Abort < Base
-  def initialize(line)
-    @attr_map = {
-      'cli_abrt' => 'client',
-      'srv_abrt' => 'server'
-    }
-    super(line)
+module RHAProxyAPI
+  module Stats
+    class Abort < RHAProxyAPI::Stats::Base
+      def initialize(line)
+        @attr_map = {
+            'cli_abrt' => 'client',
+            'srv_abrt' => 'server'
+        }
+        super(line)
+      end
+    end
   end
 end

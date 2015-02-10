@@ -1,21 +1,21 @@
-require './lib/RHAProxyAPI/exception.rb'
+module RHAProxyAPI
+  module Stats
+    class Line
+      @data = {}
 
-class Line
+      def initialize(columns, line)
+        values = line.split(',')
 
-  @data = {}
+        # raise RHAException::ColumnCountMismatch, columns.length, values.length if values.length != columns.length
 
-  def initialize(columns, line)
-    values = line.split(',')
+        @data = Hash[columns.zip values]
+        self
 
-    # raise RHAException::ColumnCountMismatch, columns.length, values.length if values.length != columns.length
+      end
 
-    @data = Hash[columns.zip values]
-    self
-
+      def get(variable_name)
+        @data[variable_name]
+      end
+    end
   end
-
-  def get(variable_name)
-    @data[variable_name]
-  end
-
 end

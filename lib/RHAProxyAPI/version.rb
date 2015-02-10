@@ -1,3 +1,3 @@
-module HAProxyAPI
+module RHAProxyAPI
   VERSION = "0.1.0"
 end

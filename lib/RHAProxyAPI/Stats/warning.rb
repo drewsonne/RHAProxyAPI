@@ -1,11 +1,15 @@
-require './lib/RHAProxyAPI/Stats/base.rb'
+require 'RHAProxyAPI/stats'
 
-class Warning < Base
-  def initialize(line)
-    @attr_map = {
-      'wretr' => 'retries',
-      'wredis' => 'redispatches'
-    }
-    super(line)
+module RHAProxyAPI
+  module Stats
+    class Warning < RHAProxyAPI::Stats::Base
+      def initialize(line)
+        @attr_map = {
+            'wretr' => 'retries',
+            'wredis' => 'redispatches'
+        }
+        super(line)
+      end
+    end
   end
 end

@@ -1,11 +1,15 @@
-require './lib/RHAProxyAPI/Stats/base.rb'
+require 'RHAProxyAPI/stats'
 
-class Bytes < Base
-  def initialize(line)
-    @attr_map = {
-      'bin' => 'in',
-      'bout' => 'out'
-    }
-    super(line)
+module RHAProxyAPI
+  module Stats
+    class Bytes < RHAProxyAPI::Stats::Base
+      def initialize(line)
+        @attr_map = {
+            'bin' => 'in',
+            'bout' => 'out'
+        }
+        super(line)
+      end
+    end
   end
 end

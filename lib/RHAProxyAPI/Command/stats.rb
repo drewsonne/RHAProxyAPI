@@ -1,8 +1,11 @@
-require './lib/RHAProxyAPI/Command/base_obj.rb'
-module Command
-  class Stats < Command::BaseObj
-    def get_socket_command
-      'show stat'
+require 'RHAProxyAPI/command'
+
+module RHAProxyAPI
+  module Command
+    class Stats < RHAProxyAPI::Command::Base
+      def get_socket_command
+        'show stat'
+      end
     end
   end
 end

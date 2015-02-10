@@ -1,11 +1,15 @@
-require './lib/RHAProxyAPI/Stats/base.rb'
+require 'RHAProxyAPI/stats'
 
-class Denied < Base
-  def initialize(line)
-    @attr_map = {
-      'dreq' => 'requests',
-      'dresp' => 'responses'
-    }
-    super(line)
+module RHAProxyAPI
+  module Stats
+    class Denied < RHAProxyAPI::Stats::Base
+      def initialize(line)
+        @attr_map = {
+            'dreq' => 'requests',
+            'dresp' => 'responses'
+        }
+        super(line)
+      end
+    end
   end
 end

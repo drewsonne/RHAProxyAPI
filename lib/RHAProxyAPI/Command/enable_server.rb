@@ -1,20 +1,23 @@
-require './lib/RHAProxyAPI/Command/base_obj.rb'
-module Command
-  class EnableServer < Command::BaseObj
+require 'RHAProxyAPI/command'
 
-    @backend
-    @server
-    @action
+module RHAProxyAPI
+  module Command
+    class EnableServer < RHAProxyAPI::Command::Base
 
-    def initialize(backend, server)
-      @backend = backend
-      @server = server
-      @action = 'enable'
+      @backend
+      @server
+      @action
+
+      def initialize(backend, server)
+        @backend = backend
+        @server = server
+        @action = 'enable'
+      end
+
+      def get_socket_command
+        "#{@action} server #{@backend}/#{@server}"
+      end
+
     end
-
-    def get_socket_command
-      "#{@action} server #{@backend}/#{@server}"
-    end
-
   end
 end

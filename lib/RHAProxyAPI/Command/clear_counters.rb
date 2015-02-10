@@ -1,15 +1,18 @@
-require './lib/RHAProxyAPI/Command/base_obj.rb'
-module Command
-  class ClearCounters < Command::BaseObj
+require 'RHAProxyAPI/command'
 
-    @all
+module RHAProxyAPI
+  module Command
+    class ClearCounters < RHAProxyAPI::Command::Base
 
-    def initialize(all=false)
-      @all = all
-    end
+      @all
 
-    def get_socket_command
-      "clear counters #{@all ? ' all' : '' }"
+      def initialize(all=false)
+        @all = all
+      end
+
+      def get_socket_command
+        "clear counters #{@all ? ' all' : '' }"
+      end
     end
   end
 end
