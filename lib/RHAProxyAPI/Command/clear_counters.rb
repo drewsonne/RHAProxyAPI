@@ -11,7 +11,7 @@ module RHAProxyAPI
       end
 
       def get_socket_command
-        "clear counters #{@all ? ' all' : '' }"
+        "clear counters#{@all ? ' all' : '' }"
       end
     end
   end

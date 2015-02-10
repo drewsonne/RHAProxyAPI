@@ -4,10 +4,12 @@ module RHAProxyAPI
 
       public
 
+      # Implemented in subclasses
       def get_socket_command
         throw NotImplementedError
       end
 
+      # Implemented in subclasses
       def get_http_command
         throw NotImplementedError
       end
