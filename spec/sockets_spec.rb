@@ -1,7 +1,6 @@
 require 'rspec'
-require 'RHAProxyAPI/executor'
 require 'spec_helper'
-require 'rspec/mocks'
+require 'RHAProxyAPI/executor'
 
 describe 'Socket dispatch' do
 
