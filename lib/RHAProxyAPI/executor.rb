@@ -25,7 +25,7 @@ module RHAProxyAPI
     def dispatch_to_ha(ha_command)
       case @method
         when Executor::SOCKET
-          ha_command.process_socket_response(execute_socket(ha_command))
+          execute_socket(ha_command)
         when Executor::HTTP
           ha_command.processHttpResponse(executeHttp(ha_command))
         else
