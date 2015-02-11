@@ -9,8 +9,8 @@ module RHAProxyAPI
       @action
 
       def initialize(backend, server)
-        @backend = backend
-        @server = server
+        @backend = escape(backend)
+        @server = escape(server)
         @action = 'enable'
       end
 

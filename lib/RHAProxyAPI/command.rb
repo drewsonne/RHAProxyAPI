@@ -24,11 +24,20 @@ module RHAProxyAPI
         get_response_message(response_lines)
       end
 
+      # Escapes variabes to be used as strings in commands.
+      # See: http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#2.1
+      def escape(value)
+        raise SecurityError, "';' is not allowed in arguments passed to commands." if value.include?(';')
+        value.gsub(/\s+/, '\ ').gsub(/\\/, '\\').gsub(/\//, '\/')
+      end
+
       private
 
       def get_http_code(response_lines)
         return 200
       end
+
+
 
     end
 
